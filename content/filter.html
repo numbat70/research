@@ -280,6 +280,13 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#search-vs-filter" class="md-nav__link">
+    Search vs Filter
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#pagination" class="md-nav__link">
     Pagination
   </a>
@@ -327,7 +334,7 @@
 <li>Search can adhere to several logical models.  <br>It is usually Not Clear to users which one we are following BUT they will assume one of them anyway. </li>
 <li>These Models at the highest level, include:<ul>
 <li><strong>Open Ended Single Word search</strong> <br>
-  (The word is found somewhere in the contentsTitle, Text or Metadata)</li>
+  (The word is found somewhere in the contents Title, Text or Metadata)</li>
 <li><strong>Open Ended Multi Word search</strong><br> 
   (Any of the words are found in the contents Title, Text or Metadata</li>
 <li><strong>Specific Phrase search</strong> <br>
@@ -359,10 +366,37 @@
 <p>All this detail is given to let you know just how many <strong>Mental Models</strong> users might have. </p>
 <h3 id="when-you-are-implementing-a-search-or-filter-it-is-critical-that-you-make-it-clear-to-users-how-it-works">When you are implementing a Search or Filter; It is critical that you make it clear to users how it works.</h3>
 <h2 id="sort">Sort</h2>
+<p>It is often unclear if the text </p>
+<h2 id="search-vs-filter">Search vs Filter</h2>
+<ul>
+<li>It is often unclear if the text input to a Search Box will build up a list, or narrow down a list. <ul>
+<li><strong>Filter</strong> <br>
+  <em>This is EXCLUSIVE</em> <br>
+  All results are shown until they are EXCLUDED by the search</li>
+<li><strong>Search</strong>  <br>
+  <em>This is ADDITIVE</em>  <br>
+  No results are shown until they are ADDED by the search</li>
+</ul>
+</li>
+</ul>
 <h2 id="pagination">Pagination</h2>
+<ul>
+<li>People hate endless pages<br>BUT<br>they also hate excessive pagination</li>
+<li>Estimate the number of likely results and ensure that this fits onto 6 pages or less. </li>
+</ul>
 <h2 id="trip-hazards">Trip Hazards</h2>
 <ul>
-<li></li>
+<li>People have VERY STRONG opinions on what a Search Box should look like</li>
+<li>They also have strong views on WHERE it should be<ul>
+<li>Make sure Search Box looks like a search box</li>
+<li>Stick it at the top right of the page</li>
+</ul>
+</li>
+<li>People expect search to work the way they expect. <ul>
+<li>Be very clear if you are doing anything clever</li>
+<li>State if the search is acting more like a filter.. </li>
+</ul>
+</li>
 </ul>
 
 
