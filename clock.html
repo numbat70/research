@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Resource Directory - Ultra Compact</title>
+    <style>
+        :root {
+            --teal: #008080;
+            --bg: #f4f7f6;
+        }
+
+        body {
+            margin: 0;
+            font-family: 'Segoe UI', Helvetica, Arial, sans-serif;
+            background-color: var(--bg);
+        }
+
+        /* Tightened Teal Header */
+        .header {
+            background-color: var(--teal);
+            color: white;
+            padding: 10px 15px 15px; /* Minimal padding: Top 10px, Bottom 15px */
+            text-align: center;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+        }
+
+        #clock {
+            font-size: 5rem;
+            font-weight: bold;
+            margin: 0;
+            line-height: 1; /* Removes extra vertical space around the font itself */
+        }
+
+        #date {
+            font-size: 1.3rem;
+            margin-top: 0; /* Removed margin to pull it closer to the clock */
+            font-weight: 300;
+        }
+
+        /* Compact Accordion / Concertina */
+        .container {
+            max-width: 950px;
+            margin: 10px auto; /* Reduced margin from header */
+            padding: 0 20px;
+        }
+
+        .accordion-item {
+            background: white;
+            border-radius: 4px;
+            margin-bottom: 4px;
+            border: 1px solid #ddd;
+            overflow: hidden;
+        }
+
+        .accordion-header {
+            padding: 10px 18px;
+            cursor: pointer;
+            background: #fff;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-weight: bold;
+            font-size: 1.1rem;
+            border-left: 4px solid var(--teal);
+            transition: background 0.2s;
+        }
+
+        .accordion-header:hover {
+            background: #f0fdfa;
+        }
+
+        .accordion-content {
+            display: none;
+            padding: 10px 20px 15px;
+            border-top: 1px solid #eee;
+        }
+
+        .link-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .link-list li {
+            padding: 5px 0;
+            border-bottom: 1px solid #f1f1f1;
+        }
+
+        .link-list a {
+            color: var(--teal);
+            text-decoration: none;
+            font-size: 1.05rem;
+        }
+
+        .link-list a:hover {
+            text-decoration: underline;
+        }
+
+        .active-header {
+            background: #f0fdfa;
+        }
+        
+        .arrow {
+            font-size: 0.8rem;
+        }
+    </style>
+</head>
+<body>
+
+<div class="header">
+    <div id="clock">00:00</div>
+    <div id="date">Loading Date...</div>
+</div>
+
+<div class="container" id="main-container"></div>
+
+<script>
+    // Exact data from user
+    const dataString = `YesAgileMIRO - Agile Practice Grouphttps://miro.com/app/board/uXjVNt0AGE8=/YesAgileTeams - SE Agile Practice Grouphttps://teams.microsoft.com/l/team/19%3AH4TujckWC1alqrPJxV3Du8d--qByeSPMoEqDUm1lhR81%40thread.tacv2/conversations?groupId=ba9ecfcd-5f9f-47d2-b7ef-827c616419cb&tenantId=50374495-fdde-4d04-bc5c-574982680e19YesAgileEMERGN - VFQhttps://www.emergn.com/vfq/YesAgilePraxis by Emergnhttp://praxisbyemergn.comYesAgilePraxis Sign Up (Choose Free option)https://praxis.emergn.com/app/sign-upYesAgileSE Agile Practice Grouphttps://teams.microsoft.com/l/entity/com.microsoft.teamspace.tab.planner/_djb2_msteams_prefix_2869834276?context=%7B%22channelId%22%3A%2219%3AH4TujckWC1alqrPJxV3Du8d--qByeSPMoEqDUm1lhR81%40thread.tacv2%22%7D&tenantId=50374495-fdde-4d04-bc5c-574982680e19YesExternalScottish Enterprisehttps://www.scottish-enterprise.comYesExternalFBShttps://findbusinesssupport.gov.scot/YesExternalGithubhttps://scotentsd.github.ioYesExternalSE Design Bloghttps://design.scotentblog.co.ukYesHRDD and OnboardingMIRO - HRDD Interim Solutionhttps://miro.com/app/board/uXjVJvBjtd0=/?moveToWidget=3458764649382522191&cot=14YesHRDD and OnboardingSHAREPOINT SITE - Onboarding & Due Diligencehttps://scotent.sharepoint.com/sites/SE-OnboardingDueDiligencePowerAppYesHRDD and OnboardingFOLDER - Orbis and Fame test data resources(Resources)https://scotent.sharepoint.com/:x:/r/sites/Company-Growth-Account-Management/EFRS/Copilot%20Agent%20Files/Companies%20for%20testing/Confirmed%20for%20testing/Companies%20for%20testing%20.xlsx?d=wd460a140490b43b48693fa1dc126a893&csf=1&web=1&e=s08xijYesHRDD and OnboardingFOLDER - Testing Assets (Orbis / Fame etc...)https://scotent.sharepoint.com/:f:/r/sites/SE-OnboardingDueDiligencePowerApp/Shared%20Documents/Main/01.%20Research%20and%20Background%20Info/TestingAssets?csf=1&web=1&e=wWg147YesHRDD and OnboardingCRM - Test Environmenthttps://se-test.crm4.dynamics.com/main.aspx?appid=21a3a5d2-f002-eb11-a813-000d3a252d60&pagetype=entitylist&etn=account&viewid=00000000-0000-0000-00aa-000010001001&viewType=1039YesHRDD and OnboardingMS LIST - HRDD Bug Listhttps://scotent.sharepoint.com/:li:/s/SE-OnboardingDueDiligencePowerApp/IwC_XvUAhgvtR6fmvimJKWMBATy5gvCnBLl4B8c8RuAqABs?e=SueW6JYesHRDD and OnboardingCOPILOT - AI Agent (EFRS HRDD Checks AGent)https://m365.cloud.microsoft/chat/?titleId=T_7c48e874-9d12-76be-e485-f99f2fd68045&source=embedded-builderYesHRDD and OnboardingMS FORM - Draft of Export Control Form (Not Final Wording)https://forms.office.com/e/EWjzkVXwgNYesHRDD and OnboardingMS FORM - Policy Understanding & Feedback Formhttps://forms.office.com/e/LVGgTNi5SdYesHRDD and OnboardingMS FORM - HRDD Testing Feedbackhttps://forms.office.com/e/yGiQkHWmvNYesHRDD and OnboardingDOCUMENT - HRDD Scenario and Test Instructionshttps://scotent.sharepoint.com/:w:/s/SE-OnboardingDueDiligencePowerApp/IQBABFSYNVkiQabemqGfk1FmAaYVFc4EOvFv9nmPspnIzmA?e=s8GJq3YesLead GenerationDEVOPS: Stories Kanbanhttps://scotent.visualstudio.com/Digital/_boards/board/t/Golden%20Eagles/StoriesYesLead GenerationDEVOPS: Backloghttps://scotent.visualstudio.com/Digital/_backlogs/backlog/Golden%20Eagles/EpicsYesLead GenerationMONDAY.COM: Product Backloghttps://scotent-league.monday.com/boards/1958476830YesLead GenerationMONDAY.COM: Gantt Chart Planhttps://scotent-league.monday.com/boards/1737984426/views/22726348YesLead GenerationCRM: LeadGen Testhttps://sparkzonecrm-test.crm11.dynamics.com/main.aspxYesLead GenerationCRM: LeadGen UAThttps://sparkzonecrm-uat.crm11.dynamics.com/main.aspxYesLead GenerationDOCUMENT: Usability Test Spreadsheethttps://scotent.sharepoint.com/:x:/r/sites/SE-LeadGenProduct/Shared%20Documents/Main/13.%20Testing/Usability_July_2025/USabilityTestingFindings.xlsxYesLead GenerationMS LIST: Usability Test Listhttps://scotent.sharepoint.com/sites/SE-LeadGenProduct/Lists/Lead%20Gen%20User%20Testing%20Feedback/AllItems.aspxYesLead GenerationPOWERPOINT: Usability Test PowerPointhttps://scotent.sharepoint.com/:p:/r/sites/SE-LeadGenProduct/Shared%20Documents/Main/13.%20Testing/Usability_July_2025/UX%20Testing%20Playback%20V1.pptxYesLead GenerationSHAREPOINT SITEhttps://scotent.sharepoint.com/sites/SE-LeadGenProductYesLead GenerationFOLDER: Key Artefactshttps://scotent.sharepoint.com/:u:/r/sites/SE-LeadGenProduct/SitePages/Home.aspx?csf=1&web=1&e=l65Q6EYesLead GenerationPOWERPOINT: Playbookhttps://scotent.sharepoint.com/:p:/r/sites/SE-LeadGenProduct/Shared%20Documents/Main/10.%20Key%20artefacts/Lead%20Gen%20Product%20Playbook.pptxYesLead GenerationCRM Test Environmenthttps://se-test.crm4.dynamics.com/main.aspx?appid=21a3a5d2-f002-eb11-a813-000d3a252d60&pagetype=entitylist&etn=account&viewid=00000000-0000-0000-00aa-000010001001&viewType=1039YesLead GenerationDOCUMENT: Testing Coverage Spreadsheethttps://scotent.sharepoint.com/:x:/r/sites/SE-LeadGenProduct/Shared%20Documents/Main/13.%20Testing/Usability_Aug_2025/FeedbackList_Aug_2025.xlsx?d=w3a2cbe20a8804ac4b9a2165461fc1f06&csf=1&web=1&e=ohlqkJYesLead GenerationPOWER BI: Lead Generation Pipeline Reporthttps://app.powerbi.com/groups/me/reports/f00e022c-857e-4ba9-a3c6-6b071d501d46/ad8d0283d451f8376abe?ctid=50374495-fdde-4d04-bc5c-574982680e19&experience=power-biYesLead GenerationMIRO: LeadGen: Service blueprint, Story,Journey Maps, Testinghttps://miro.com/app/board/uXjVLAEYus0=/YesMartinSE Agile Group Backloghttps://teams.microsoft.com/l/entity/com.microsoft.teamspace.tab.planner/_djb2_msteams_prefix_2869834276?context=%7B%22channelId%22%3A%2219%3AH4TujckWC1alqrPJxV3Du8d--qByeSPMoEqDUm1lhR81%40thread.tacv2%22%7D&tenantId=50374495-fdde-4d04-bc5c-574982680e19YesMartinMonday.com (Enabling Customers)https://scotent-league.monday.com/boards/1685186482/views/21005759YesOffice 365Office 365https://www.microsoft365.com/YesOffice 365Office 365 Appshttps://www.microsoft365.com/appsYesOffice 365Formshttps://forms.office.com/YesOffice 365CoPilothttps://www.microsoft365.com/chat/?auth=2&home=1YesOffice 365OneDrivehttps://www.microsoft365.com/onedriveYesOffice 365MS Bookingshttps://outlook.office.com/bookings/homepageYesOffice 365PowerBIhttps://app.powerbi.com/YesOffice 365PowerAutomatehttps://make.powerautomate.com/YesOffice 365PowerAppshttps://make.powerapps.com/YesPersonalOneDrivehttps://scotent-my.sharepoint.com/YesPersonalTrain Timeshttps://www.thetrainline.comYesPersonalPrompt like a Prohttps://scotent.sharepoint.com/sites/Intranet/News/SitePages/Prompt-Like-a-Pro-%E2%80%93-Video-series-now-live.aspxYesPersonasWEB PAGE: Personashttps://scotent.sharepoint.com/sites/SE-UserResearch/SitePages/Personas.aspxYesPersonasPowerBI Report V4https://app.powerbi.com/groups/f49f822a-2fe9-4beb-984e-d236362ea0fc/reports/22c4d789-d462-4ba8-b656-b87e405b9ce8/26d28dfd5135c48c0104?experience=power-biYesPersonasPowerBI Report V3https://app.powerbi.com/links/-F1Nnv-KCv?ctid=50374495-fdde-4d04-bc5c-574982680e19&pbi_source=linkShare&bookmarkGuid=4ecf7a8c-7b1b-418b-b060-c470f85036c7YesPersonasDASHBOARD: Personashttps://app.powerbi.com/groups/f49f822a-2fe9-4beb-984e-d236362ea0fc/dashboards/6a2eb083-4fc8-4681-ba8a-c9666c1ed94a?ctid=50374495-fdde-4d04-bc5c-574982680e19&pbi_source=linkShareYesPersonasLIST: Personashttps://scotent.sharepoint.com/sites/SE-UserResearch/Lists/Personas/AllItems.aspxYesPersonasLIST: Persona-Scenarioshttps://scotent.sharepoint.com/sites/SE-UserResearch/Lists/PersonaScenarios/AllItems.aspxYesPersonasFILES: Personas Files in SE_User_Research Team Foldershttps://scotent.sharepoint.com/:f:/s/SE-UserResearch/IgD_t41MPyzYS5zIDjRUBhSNAW7NncreGrlQZH0V5Qdj_PY?e=dkr7BYYesPersonasCOPILOT - AI Agent (EFRS HRDD Checks AGent)https://m365.cloud.microsoft/chat/?titleId=T_7c48e874-9d12-76be-e485-f99f2fd68045&source=embedded-builderYesPMFPMF Teams Main Channelhttps://teams.microsoft.com/l/channel/19%3ALQlxyQ26YbP5CyZO4vwp5nqiHWOXXALAPE9KqBbEvfM1%40thread.tacv2/Main?groupId=b44296f6-35bf-4cac-b568-25e273a6d13f&tenantId=50374495-fdde-4d04-bc5c-574982680e19YesPMFPMF Requirementshttps://scotent.sharepoint.com/:x:/s/SE-PMFDiscovery/IQAm3GlawwBFQYfAx00KZ0g9AUN8arnjtR7vF12RCl8gaBQ?e=6d4LKhYesPre QualificationPreQual Lighthouse Teams Main Channelhttps://teams.microsoft.com/l/channel/19%3AOQQeqxaB2aTIwM9Y7vlN195neqo18-WSOoKiTTgLqTs1%40thread.tacv2/Lighthouse%20-%20Feb%202026%20CORE%20TEAM?groupId=006d85e2-8a1a-4f34-a2f9-496b5cc6a92c&tenantId=50374495-fdde-4d04-bc5c-574982680e19&ngc=true&allowXTenantAccess=trueYesPre QualificationThings we knowhttps://teams.microsoft.com/l/channel/19%3AOQQeqxaB2aTIwM9Y7vlN195neqo18-WSOoKiTTgLqTs1%40thread.tacv2/tab%3A%3A02714a49-78d2-4cf9-8bf7-5b87f17b734a?context=%7B%22channelId%22%3A%2219%3AOQQeqxaB2aTIwM9Y7vlN195neqo18-WSOoKiTTgLqTs1%40thread.tacv2%22%7D&tenantId=50374495-fdde-4d04-bc5c-574982680e19YesPre QualificationQuestionshttps://teams.microsoft.com/l/channel/19%3AOQQeqxaB2aTIwM9Y7vlN195neqo18-WSOoKiTTgLqTs1%40thread.tacv2/tab%3A%3A7f006c2b-d185-44ad-bbb9-48207059a1bb?context=%7B%22channelId%22%3A%2219%3AOQQeqxaB2aTIwM9Y7vlN195neqo18-WSOoKiTTgLqTs1%40thread.tacv2%22%7D&tenantId=50374495-fdde-4d04-bc5c-574982680e19YesPre QualificationResourceshttps://teams.microsoft.com/l/channel/19%3AOQQeqxaB2aTIwM9Y7vlN195neqo18-WSOoKiTTgLqTs1%40thread.tacv2/tab%3A%3A563c6006-1f76-46ae-8f51-da9198b1059f?context=%7B%22channelId%22%3A%2219%3AOQQeqxaB2aTIwM9Y7vlN195neqo18-WSOoKiTTgLqTs1%40thread.tacv2%22%7D&tenantId=50374495-fdde-4d04-bc5c-574982680e19YesToolsVS Code (Online)https://vscode.dev/YesToolsMS Bookingshttps://outlook.office.com/bookings/bookingsYesToolsMS Bookings Calendarhttps://outlook.office365.com/bookings/calendarYesToolsCoPilothttps://m365.cloud.microsoft/chat/YesToolsLiddell Room Bookinghttps://outlook.office365.com/book/SE-DDITroom@scotent.co.uk/?ismsaljsauthenabled=trueYesToolsSafelinks URL Decoderhttps://design.scotentblog.co.uk/toolbox/safelinks-original-url-decoder/YesToolsMS FORMShttps://forms.office.com/YesTrainingNNG Courseshttps://www.nngroup.com/courses/YesTrainingNNG Certificationhttps://www.nngroup.com/ux-certification/YesTrainingNNG Profilehttps://www.nngroup.com/profile/YesUR Every DayWork In Progress Boardhttps://teams.microsoft.com/l/entity/com.microsoft.teamspace.tab.planner/_djb2_msteams_prefix_3374021151?context=%7B%22channelId%22%3A%2219%3Addbe850b689345688d5ed2890abf2b4d%40thread.tacv2%22%7D&tenantId=50374495-fdde-4d04-bc5c-574982680e19YesUR Every DayMirohttps://miro.comYesUR Every DayUserlyticshttps://dashboard.userlytics.com/client/app/dashboardYesUR Every DayAccessCloud Expenseshttps://identity.accessacloud.com/YesUR Every DayCRMhttps://crm2.crm4.dynamics.com/main.aspxYesUR Every DayDevOpshttps://scotent.visualstudio.com/Digital/_boards/board/t/Golden%20Eagles/EpicsYesUR Every DayEIShttps://sepeoplehub.scottish-enterprise.com/ce0405li_ess/ess/dist/#/main/home/dashboardYesUR Every DayEIS – ServiceNowhttps://sdsprod.service-now.com/spYesUser ResearchUser Research TEAM Input Research Statshttps://scotent.sharepoint.com/:l:/s/SE-UserResearch/FOxD2VX6vRhKjmo-EuOkfisBZI5XN-tbwOAKfbunAkAz4Q?nav=Zjk3M2M4ZDEtNzc0ZS00Nzk5LWE3ZmQtMDJmZDQ3ZTJmZjY3YesUser ResearchUser Research TEAM Lib_Statshttps://scotent.sharepoint.com/sites/SE-UserResearch/Lists/Research%20Stats/2024%20Numbers.aspxYesWeb DesignOnline HTML_Viewerhttps://html.onlineviewer.net/YesWeb DesignHTML Colour Codeshttps://htmlcolorcodes.com/color-names/YesWeb DesignIconFinder (Free)https://www.iconfinder.com/search?q=drawers&price=free`;
+
+    function buildPage() {
+        const sections = ["Agile", "External", "HRDD and Onboarding", "Lead Generation", "Martin", "Office 365", "Personal", "Personas", "PMF", "Pre Qualification", "Tools", "Training", "UR Every Day", "User Research", "Web Design"];
+        const grouped = {};
+        
+        const lines = dataString.split(/(?=Yes|No)/);
+        
+        lines.forEach(line => {
+            if (!line.startsWith("Yes")) return;
+            
+            let foundSection = "";
+            sections.forEach(s => { if (line.substring(3).startsWith(s)) foundSection = s; });
+            
+            if (foundSection) {
+                const urlMatch = line.match(/(https?:\/\/|file:\/\/|\.\.\/)(.*)/);
+                if (urlMatch) {
+                    const url = urlMatch[0];
+                    const linkText = line.substring(3 + foundSection.length).replace(url, "").trim();
+                    if (!grouped[foundSection]) grouped[foundSection] = [];
+                    grouped[foundSection].push({ text: linkText, url: url });
+                }
+            }
+        });
+
+        const container = document.getElementById('main-container');
+        Object.keys(grouped).sort().forEach(sec => {
+            const item = document.createElement('div');
+            item.className = 'accordion-item';
+            item.innerHTML = `
+                <div class="accordion-header"><span>${sec}</span><span class="arrow">▼</span></div>
+                <div class="accordion-content"><ul class="link-list">
+                    ${grouped[sec].map(l => `<li><a href="${l.url}" target="_blank">${l.text}</a></li>`).join('')}
+                </ul></div>`;
+            container.appendChild(item);
+            item.querySelector('.accordion-header').addEventListener('click', function() {
+                const content = this.nextElementSibling;
+                const isOpen = content.style.display === 'block';
+                document.querySelectorAll('.accordion-content').forEach(c => c.style.display = 'none');
+                document.querySelectorAll('.accordion-header').forEach(h => h.classList.remove('active-header'));
+                if (!isOpen) {
+                    content.style.display = 'block';
+                    this.classList.add('active-header');
+                }
+            });
+        });
+    }
+
+    function updateTime() {
+        const now = new Date();
+        document.getElementById('clock').textContent = now.toLocaleTimeString('en-GB', { hour: '2-digit', minute: '2-digit', hour12: false });
+        
+        const day = now.toLocaleDateString('en-GB', { weekday: 'long' });
+        const month = now.toLocaleDateString('en-GB', { month: 'long' });
+        const year = now.getFullYear();
+        const dateNum = now.getDate();
+        
+        let suffix = "th";
+        if (dateNum % 10 === 1 && dateNum !== 11) suffix = "st";
+        else if (dateNum % 10 === 2 && dateNum !== 12) suffix = "nd";
+        else if (dateNum % 10 === 3 && dateNum !== 13) suffix = "rd";
+        
+        document.getElementById('date').textContent = `${day}, ${dateNum}${suffix} ${month} ${year}`;
+    }
+
+    setInterval(updateTime, 1000);
+    updateTime();
+    buildPage();
+</script>
+
+</body>
+</html>
